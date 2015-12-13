@@ -1,13 +1,23 @@
+{% extends "base.html" %}
+
 {% load bootstrap3 %}
 
+{% block content %}
+
 {# Display a form #}
+{% if form.errors %}
+<p>{{ form.errors }}</p>
+{% endif %}
 
 <form action="." method="post" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
+    {% bootstrap_button button_type=submit content="{% bootstrap_icon "star" %} Submit" button_class="btn btn-primary"  %}
     {% buttons %}
         <button type="submit" class="btn btn-primary">
             {% bootstrap_icon "star" %} Submit
         </button>
     {% endbuttons %}
 </form>
+
+{% endblock %}

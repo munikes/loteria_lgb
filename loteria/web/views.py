@@ -1,6 +1,7 @@
 from django.views import generic
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 from .models import LotteryUser
 from .forms import LotteryUserForm
@@ -13,13 +14,15 @@ class IndexView(generic.ListView):
         """Return all numbers"""
         return LotteryUser.objects.all()
 
+@login_required
 def create(request):
     if request.method == "POST":
         form = LotteryUserForm(request.POST)
         if form.is_valid():
             # <process form cleaned data>
+            form.save()
             return HttpResponseRedirect('/web/')
     else:
         form = LotteryUserForm()
 
-    return render(request, 'form_template.html', {'form': form})
+    return render(request, 'create_number.html', {'form': form})
