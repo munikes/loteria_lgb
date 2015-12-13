@@ -1,0 +1,13 @@
+{% load bootstrap3 %}
+
+{# Display a form #}
+
+{% if number_list %}
+    <ul>
+    {% for lotteryuser in number_list %}
+        <li>{{ lotteryuser.name }} {{ lotteryuser.number }} {{ lotteryuser.prize }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay números.</p>
+{% endif %}
