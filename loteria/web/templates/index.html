@@ -7,13 +7,23 @@
 {# Display a form #}
 
 {% if number_list %}
-    <ul>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Apodo</th>
+            <th>Número</th>
+            <th>Premio</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for lotteryuser in number_list %}
-        <li>{{ lotteryuser.name }} {{ lotteryuser.number }} {{ lotteryuser.prize }}</li>
+    <tr><td>{{ lotteryuser.name }}</td><td>{{ lotteryuser.number }}</td><td>{{ lotteryuser.prize }}</td><tr>
     {% endfor %}
-    </ul>
+    </tbody>
+</table>
 {% else %}
     <p>No hay números.</p>
 {% endif %}
 
+{% bootstrap_button button_type=link href="/logout/" content="Salir" button_class="btn btn-primary" %}
 {% endblock %}

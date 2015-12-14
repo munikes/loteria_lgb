@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from . import views
 
 urlpatterns = [
-            url(r'^list/$', login_required(views.IndexView.as_view()), name='index'),
-            url(r'^create/$', views.create, name='create_number'),
-            url(r'^$', auth_views.login),
-            url(r'^logout/$', auth_views.logout),
+            url(r'^list/', login_required(views.IndexView.as_view()), name='index'),
+            url(r'^create/', views.create, name='create_number'),
+            url(r'^logout/', auth_views.logout, name="logout"),
+            url(r'^', auth_views.login, name="login"),
             ]

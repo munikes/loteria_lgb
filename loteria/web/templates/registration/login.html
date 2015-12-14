@@ -5,15 +5,13 @@
 
 {% block content %}
 
-{% if form.errors %}
-<p>{{ form.errors }}</p>
-{% endif %}
+{% bootstrap_form_errors form %}
 
-<form method="post" action="create/" class="form-signin">
+<form method="post" action="." class="form-signin">
     {% csrf_token %}
     {% bootstrap_field form.username show_label=false %}
     {% bootstrap_field form.password show_label=false %}
-    {% bootstrap_button button_type=submit content="Sign in" size="lg" button_class="btn-primary btn-block" %}
+    {% bootstrap_button button_type=submit content="Entrar" size="lg" button_class="btn-primary btn-block" %}
 </form>
 
 {% endblock %}

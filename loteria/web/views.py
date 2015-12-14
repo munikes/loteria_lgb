@@ -12,16 +12,17 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return all numbers"""
-        return LotteryUser.objects.all()
+        return LotteryUser.objects.all().order_by('number')
 
 @login_required
 def create(request):
+    print "pasa"
     if request.method == "POST":
         form = LotteryUserForm(request.POST)
         if form.is_valid():
             # <process form cleaned data>
             form.save()
-            return HttpResponseRedirect('/web/')
+            return HttpResponseRedirect('/list/')
     else:
         form = LotteryUserForm()
 
