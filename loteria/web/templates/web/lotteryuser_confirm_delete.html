@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+{# Display a form #}
+{% bootstrap_form_errors form %}
+
+<form action="" method="post" class="form">
+    {% csrf_token %}
+    <p>Estas seguro de que quieres borrar el número "{{ object.name }}"?</p>
+    <input type="submit" value="Borrar" />
+</form>
+
+{% endblock %}

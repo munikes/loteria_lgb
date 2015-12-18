@@ -1,12 +1,9 @@
 from django.views import generic
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse_lazy
 
 from .models import LotteryUser
-from .forms import LotteryUserForm
 
-class IndexView(generic.ListView):
+class LotteryUserList(generic.ListView):
     template_name = 'index.html'
     context_object_name = 'number_list'
 
@@ -14,16 +11,18 @@ class IndexView(generic.ListView):
         """Return all numbers"""
         return LotteryUser.objects.all().order_by('number')
 
-@login_required
-def create(request):
-    print "pasa"
-    if request.method == "POST":
-        form = LotteryUserForm(request.POST)
-        if form.is_valid():
-            # <process form cleaned data>
-            form.save()
-            return HttpResponseRedirect('/list/')
-    else:
-        form = LotteryUserForm()
 
-    return render(request, 'create_number.html', {'form': form})
+class LotteryUserCreate(generic.edit.CreateView):
+    model = LotteryUser
+    fields = ['name', 'number']
+    success_url = reverse_lazy('lotteryuser-list')
+
+
+class LotteryUserUpdate(generic.edit.UpdateView):
+    model = LotteryUser
+    template_name_suffix = '_update_form'
+
+
+class LotteryUserDelete(generic.edit.DeleteView):
+    model = LotteryUser
+    success_url = reverse_lazy('lotteryuser-list')

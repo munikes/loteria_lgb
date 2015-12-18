@@ -7,10 +7,10 @@
 {# Display a form #}
 {% bootstrap_form_errors form %}
 
-<form action="." method="post" class="form">
+<form action="" method="post" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% bootstrap_button button_type=submit content="Crear número" button_class="btn btn-primary"  %}
+    {% bootstrap_button button_type=submit content="Editar número" button_class="btn btn-primary"  %}
     {% bootstrap_button button_type=link href="/list/" content="Lista" button_class="btn btn-primary" %}
     {% bootstrap_button button_type=link href="/logout/" content="Salir" button_class="btn btn-primary" %}
 </form>

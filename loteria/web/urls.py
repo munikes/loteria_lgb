@@ -5,8 +5,10 @@ from django.contrib.auth.decorators import login_required
 from . import views
 
 urlpatterns = [
-            url(r'^list/', login_required(views.IndexView.as_view()), name='index'),
-            url(r'^create/', views.create, name='create_number'),
-            url(r'^logout/', auth_views.logout, name="logout"),
-            url(r'^', auth_views.login, name="login"),
+            url(r'^list/$', login_required(views.LotteryUserList.as_view()), name='lotteryuser-list'),
+            url(r'^create/$', login_required(views.LotteryUserCreate.as_view()), name='lotteryuser-create'),
+            url(r'^update/(?P<id_lotteryuser>\d+)$', login_required(views.LotteryUserUpdate.as_view()), name='lotteryuser-update'),
+            url(r'^delete/(?P<id_lotteryuser>\d+)$', login_required(views.LotteryUserDelete.as_view()), name='lotteryuser-delete'),
+            url(r'^logout/$', auth_views.logout, name="logout"),
+            url(r'^$', auth_views.login, name="login"),
             ]

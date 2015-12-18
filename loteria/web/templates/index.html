@@ -6,7 +6,27 @@
 
 {# Display a form #}
 
-{% if number_list %}
+{% if number_list and user.is_superuser %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Apodo</th>
+            <th>Número</th>
+            <th>Premio</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for lotteryuser in number_list %}
+    <tr onclick="location.href='/update/{{ lotteryuser.id }}'" >
+        <td>{{ lotteryuser.name }}</td>
+        <td>{{ lotteryuser.number }}</td>
+        <td>{{ lotteryuser.prize }}</td>
+        <td>{% bootstrap_button button_type=link href="/delete/{{ lotteryuser.id }}" content="Borrar" button_class="btn btn-primary" %}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% elif number_list %}
 <table class="table">
     <thead>
         <tr>
