@@ -21,7 +21,11 @@
         <td>{{ lotteryuser.name }}</td>
         <td>{{ lotteryuser.number }}</td>
         <td>{{ lotteryuser.prize }}</td>
-        <td>{% bootstrap_button button_type=link href="/delete/{{ lotteryuser.id }}" content="Borrar" button_class="btn btn-primary" %}</td>
+        <td>
+            <a class="btn btn-primary" href="/delete/{{ lotteryuser.id }}">
+               Borrar
+            </a>
+        </td>
     </tr>
     {% endfor %}
     </tbody>

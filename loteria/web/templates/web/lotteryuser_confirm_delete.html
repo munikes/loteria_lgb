@@ -4,13 +4,10 @@
 
 {% block content %}
 
-{# Display a form #}
-{% bootstrap_form_errors form %}
-
 <form action="" method="post" class="form">
     {% csrf_token %}
-    <p>Estas seguro de que quieres borrar el número "{{ object.name }}"?</p>
-    <input type="submit" value="Borrar" />
+    <p>Estas seguro de que quieres borrar el número "{{ object.name }} {{ object.number }}"?</p>
+    {% bootstrap_button button_type=submit content="Borrar" button_class="btn btn-primary" %}
 </form>
 
 {% endblock %}

@@ -15,12 +15,15 @@ class LotteryUserList(generic.ListView):
 class LotteryUserCreate(generic.edit.CreateView):
     model = LotteryUser
     fields = ['name', 'number']
+    template_name_suffix = '_create_form'
     success_url = reverse_lazy('lotteryuser-list')
 
 
 class LotteryUserUpdate(generic.edit.UpdateView):
     model = LotteryUser
+    fields = ['name', 'number', 'prize']
     template_name_suffix = '_update_form'
+    success_url = reverse_lazy('lotteryuser-list')
 
 
 class LotteryUserDelete(generic.edit.DeleteView):
