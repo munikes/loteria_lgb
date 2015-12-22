@@ -17,7 +17,13 @@
     </thead>
     <tbody>
     {% for lotteryuser in number_list %}
-    <tr onclick="location.href='/update/{{ lotteryuser.id }}'" >
+        {% if lotteryuser.prize < 20 %}
+            <tr class="danger" onclick="location.href='/update/{{ lotteryuser.id }}'" >
+        {% if lotteryuser.prize = 20 %}
+            <tr class="warning" onclick="location.href='/update/{{ lotteryuser.id }}'" >
+        {% else %}
+            <tr class="success" onclick="location.href='/update/{{ lotteryuser.id }}'" >
+        {% endif %}
         <td>{{ lotteryuser.name }}</td>
         <td>{{ lotteryuser.number }}</td>
         <td>{{ lotteryuser.prize }}</td>
@@ -41,7 +47,13 @@
     </thead>
     <tbody>
     {% for lotteryuser in number_list %}
-    <tr><td>{{ lotteryuser.name }}</td><td>{{ lotteryuser.number }}</td><td>{{ lotteryuser.prize }}</td><tr>
+        {% if lotteryuser.prize < 20 %}
+            <tr class="danger"><td>{{ lotteryuser.name }}</td><td>{{ lotteryuser.number }}</td><td>{{ lotteryuser.prize }}</td><tr>
+        {% if lotteryuser.prize = 20 %}
+            <tr class="warning"><td>{{ lotteryuser.name }}</td><td>{{ lotteryuser.number }}</td><td>{{ lotteryuser.prize }}</td><tr>
+        {% else %}
+            <tr class="success"><td>{{ lotteryuser.name }}</td><td>{{ lotteryuser.number }}</td><td>{{ lotteryuser.prize }}</td><tr>
+        {% endif %}
     {% endfor %}
     </tbody>
 </table>
